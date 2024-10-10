@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Cuentas</title>
+  <script src="gestionCuenta.js"></script>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+  <h1>Gestión de Cuentas</h1>
+
+  <!-- Agregar Cuenta -->
+  <div class="container">
+    <h3>Agregar Cuenta</h3>
+    <label for="numeroCuentaAdd">Número de Cuenta:</label>
+    <input type="number" id="numeroCuentaAdd" placeholder="Número de cuenta" />
+    <label for="nombreUsuario">Nombre de usuario:</label>
+    <input type="text" id="nombreUsuario" placeholder="Nombre" />
+    <label for="montoAdd">Monto:</label>
+    <input type="number" id="montoAdd" placeholder="Monto" />
+    <label for="tipoCuenta">Tipo de Cuenta:</label>
+    <select id="tipoCuenta">
+      <option value="">Seleccione un tipo de cuenta</option>
+      <option value="Cuenta de Ahorros">AHORROS</option>
+      <option value="Cuenta Corriente">CORRIENTE</option>
+    </select>
+    <button onclick="agregarCuenta(
+        document.getElementById('numeroCuentaAdd').value,
+        document.getElementById('nombreUsuario').value,
+        document.getElementById('montoAdd').value,
+        document.getElementById('tipoCuenta').value
+    )">
+      Agregar Cuenta
+    </button>
+  </div>
+
+  <!-- Agregar Movimiento -->
+  <div class="container">
+    <h3>Agregar movimientos</h3>
+    <label for="numeroCuentaMovi">Número de Cuenta:</label>
+    <input type="number" id="numeroCuentaMov" placeholder="Número de cuenta" />
+    <label for="montoMovi">Monto:</label>
+    <input type="number" id="montoMov" placeholder="Monto" />
+    <label for="tipoMovimiento">Tipo de Movimiento:</label>
+    <select id="tipoMovimiento">
+      <option value="">Seleccione un tipo de movimiento</option>
+      <option value="Ingreso">DEPOSITO</option>
+      <option value="Egreso">RETIRO</option>
+    </select>
+    <button onclick="agregarMovimiento(
+        document.getElementById('numeroCuentaMov').value,
+        document.getElementById('tipoMovimiento').value,
+        document.getElementById('montoMov').value
+    )">
+      Agregar Movimiento
+    </button>
+  </div>
+
+  <!-- Ordenar Cuentas -->
+  <div class="container">
+    <h3>Funcionalidades</h3>
+    <label for="ordenarId">Ordenar por:</label>
+    <select id="ordenarId">
+      <option value="">Seleccione un atributo de ordenación</option>
+      <option value="nombre">Nombre</option>
+      <option value="numeroCuenta">Nro. Cuenta</option>
+      <option value="monto">Monto</option>
+      <option value="tipoCuenta">Tipo de cuenta</option>
+      <option value="fechaCreacion">Fecha de creación</option>
+    </select>
+
+    <label for="tipoOrdenacion">Tipo de ordenación:</label>
+    <select id="tipoOrdenacion">
+      <option value="">Seleccione un tipo de ordenación:</option>
+      <option value="true">ASCENDENTE</option>
+      <option value="false">DESCENDENTE</option>
+    </select>
+    <button onclick="ordenarCuenta(
+        document.getElementById('ordenarId').value,
+        document.getElementById('tipoOrdenacion').value === 'true'
+    )">
+      Ordenar
+    </button>
+  </div>
+
+  <!-- Buscar Cuentas -->
+  <div class="container">
+    <label for="buscarId">Buscar por:</label>
+    <select id="buscarId">
+      <option value="">Seleccione un atributo de búsqueda</option>
+      <option value="nombre">Nombre</option>
+      <option value="numeroCuenta">Nro. Cuenta</option>
+      <option value="monto">Monto</option>
+      <option value="tipoCuenta">Tipo de cuenta</option>
+      <option value="fechaCreacion">Fecha de creación</option>
+    </select>
+
+    <input type="text" id="atributoBusqueda" placeholder="Ingrese su atributo" />
+    <button onclick="buscarCuentas(
+        document.getElementById('buscarId').value,
+        document.getElementById('atributoBusqueda').value
+    )">
+      Buscar
+    </button>
+  </div>
+
+  <!-- Listar Cuentas -->
+  <div class="container">
+    <h3>Tabla de cuentas</h3>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      listarCuentas(); // Llama a la función al cargar la página
+    };
+  </script>
+</body>
+
+</html>
